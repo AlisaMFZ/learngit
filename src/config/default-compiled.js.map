@@ -1,0 +1,1 @@
+{"version":3,"sources":["default.js"],"names":[],"mappings":";;;;;AAAA;AACA,IAAI,SAAS;AACT;AACA,aAAS;AAFA,CAAb;;kBAKe,M","file":"default-compiled.js","sourcesContent":["//default  config\r\nvar config = {\r\n    //api的host\r\n    apiHost: \"${apiHost}\",\r\n};\r\n\r\nexport default config;"]}

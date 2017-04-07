@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta property="qc:admins" content="24412715621136453467411615663757"/>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="msapplication-tap-highlight" content="no">
+    <title></title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+    <div id="app">
+        <div class="group" v-for= "(rank,$index) in rankingList" :class="{'mgT10':$index>0}">
+            <ul class="header">
+                <li v-cloak>
+                    <div class="w35h35 mgT5">
+                        <img class="w100 radius50" :src="rank.publishUserHeadPic|| '../images/header.png'"/>
+                        <img src="../images/mark1.png" class="mark" v-if="rank.talentPublish==1"/>
+                        <img src="../images/mark2.png" class="mark" v-if="rank.talentPublish==0"/>
+                    </div>
+                    <div class="header-details mgT5">
+                        <span class="f14 c3">{{rank.title}}</span>
+                        <i class="c9 f12 mgT5">{{rank.publishTimeStr}}</i>
+                    </div>
+                    <div class="header-details text-right pdR20">
+                        <span class="bgeb0044 cf f14 radiusAll15 mgT5 disIB"  @click.stop="">找Ta拍</span>
+                    </div>
+                </li>
+            </ul>
+              <div class="user-label">
+                  <span v-for="tag in rank.tags">{{tag.tag_name}}</span>
+              </div>
+              <p class="mgL10 mgB10">{{rank.content}}</p>
+                <div id="rankingList" class="module ranking-list">
+                    <div class="transverse">
+                        <div class="prod-warp" v-if = "rank.picList&&rank.picList.length>0" :style="{width: tabsWidth*rank.picList.length+'px'}">
+                                <div class="prod-img" v-for="(pic,$index) in rank.picList" :style="{'width':rank.picList.length>1?tabsWidth-30+'px':tabsWidth+'px'}">
+                                    <span :style="{'background-image':'url('+pic.picUrl+')'}"></span>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+              <div class="footer">
+                <div class="footer-left" v-if = "rank.picList&&rank.picList.length>0">
+                    <img :src="img.picUrl ||' ./images/list1.png'" class="footer-img" v-for="(img,$index) in rank.peoplePicList" v-if="$index<3"/>
+                    <span class="footer-img">{{rank.picList.length}}</span>
+                </div>
+                <div class="footer-right">
+                    <i class="icon-report"></i>
+                    <i class="icon-share"></i>
+                    <span class="num"><i class="icon-like" style="width:15px;height:15px;"></i>{{rank.likes}}</span>
+
+                </div>
+            </div>
+            </div>
+        <div class="load text-center">
+            <span class="radiusAll4" v-if="!noData&&!isEnd"  @click="load">点击加载更多</span>
+            <!--无数据时-->
+            <p class="f12 c6 mgT15"  v-if="noData">暂无数据...</p>
+            <!--数据到底-->
+            <p class="f12 c6 mgT15" v-if="isEnd">没有更多了哦~</p>
+        </div>
+         <div class="group-footer">
+                 <div class="footerGradient">在云麻豆中打开</div>
+                 <div class="bgeb0044">找ta拍</div>
+         </div>
+    </div>
+    <script src="../libs/frozenui/lib/zepto.min.js?v=1491544533238"></script>
+    <script src="../libs/frozenui/js/frozen.js?v=1491544533238"></script>
+    <script src="../libs/vendor.js?v=1491544533238"></script>
+    <script src="../common.js?v=1491544533238"></script>
+    <script src="../index.js?v=1491544533238"></script>
+</body>
+</html>
